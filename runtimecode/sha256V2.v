@@ -172,5 +172,32 @@ module W_messageprep #(parameter WSIZE=1)(
         end
     end 
 endmodule
-                
+// generalized compression function 
+//T1= LS1(E)+CHoose(e,f,g)+h+k(n)+t(n)
+//T2=LS0(A)+Majority(a,b,c)          
+//h=g
+//g=f
+//e=d+T1
+//d=c
+//c=b
+//b=a
+//a=t1+t2
+module gen_comp #(parameter WORDS=0)(
+    input [WORDS-1:0] Kn,Tn,A_i,B_i,C_i,D_i,E_i,F_i,G_i,H_i,Chs,Maj,LS1,LS0,
+    output[WORDS-1:0] A_o,B_o,C_o,D_o,E_o,F_o,G_o,H_o);
+    
+    wire [WORDS-1:0] T1= H_i + LS1+Chs+Kn+Tn;
+    wire [WORDS-1:0] T2= LS0+Maj;
+    
+    assign A_o=T1+T2;
+    assign B_o=A_i;
+    assign C_o=B_i;
+    assign D_o=C_i;
+    assign E_o=D_i+T1;
+    assign F_o=E_i;
+    assign G_o=F_i;
+    assign H_o=G_i;
+    
+    endmodule
+            
 
