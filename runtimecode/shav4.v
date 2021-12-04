@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/20/2021 10:57:22 AM
+// Create Date:
 // Design Name: 
 // Module Name: SHA_256
 // Project Name: 
